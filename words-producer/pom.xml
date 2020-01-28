@@ -24,9 +24,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.assembly.plugin>2.4.1</maven.assembly.plugin>
-    <maven.compiler.plugin.source>1.8</maven.compiler.plugin.source>
-    <maven.compiler.plugin.target>1.8</maven.compiler.plugin.target>
-    <java.version>1.8</java.version>
   </properties>
 
 
@@ -53,8 +50,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>11</source>
+          <target>11</target>
         </configuration>
       </plugin>
 

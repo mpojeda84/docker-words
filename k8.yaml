@@ -1,0 +1,59 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: words-producer-deployment
+  labels:
+    app: words-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: words-producer
+  template:
+    metadata:
+      labels:
+        app: words-producer
+    spec:
+      containers:
+        - name: words-producer-container
+          image: mpojeda84/words-producer
+          env:
+            - name: MAPR_CLUSTER
+              value: maikel.cluster
+            - name: MAPR_CLDB_HOSTS
+              value: psnode90,psnode91,psnode92
+            - name: MAPR_CONTAINER_USER
+              value: mapr
+            - name: MY_TOPIC
+              value: /user/mapr/words/streams/words:topic
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: words-consumer-deployment
+  labels:
+    app: words-consumer
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: words-consumer
+  template:
+    metadata:
+      labels:
+        app: words-consumer
+    spec:
+      containers:
+        - name: words-consumer-container
+          image: mpojeda84/words-consumer
+          env:
+            - name: MAPR_CLUSTER
+              value: maikel.cluster
+            - name: MAPR_CLDB_HOSTS
+              value: psnode90,psnode91,psnode92
+            - name: MAPR_CONTAINER_USER
+              value: mapr
+            - name: MY_TOPIC
+              value: /user/mapr/words/streams/words:topic
+            - name: MY_TABLE
+              value: /user/mapr/words/tables/words

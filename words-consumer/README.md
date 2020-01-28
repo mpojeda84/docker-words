@@ -1,3 +1,9 @@
+Pre-requisites:
+1. You need an unsecured Map-R cluster to run this example, psnode[90-92] is used here
+2. Create table to save the data: /user/mapr/words/tables/words in the Map-R Cluster
+3. Ensure stream topic was created: /user/mapr/words/streams/words:topic
+4. Docker environment up and ready to run containers
+
 To run the demo:
 
 1. Clone this repo
